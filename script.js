@@ -1,63 +1,3 @@
-const sun = document.querySelector(".sun");
-const skybarDiv = document.querySelector(".skybars");
-const sky = document.querySelector(".sky");
-const ground = document.querySelector(".ground");
-const vertical = document.getElementById("vertical");
-const mountainWrapper = document.querySelector(".mountain-wrapper");
-
-makeVerticalGroundHr();
-makeHorizontalGroundHr();
-makeSunBars();
-makeSkyBars();
-createMountains();
-
-function makeHorizontalGroundHr() {
-  for (let hor = 1; hor <= 20; hor++) {
-    ground.innerHTML += `<hr class="horizontal-hr" data="hor ${hor}">`;
-  }
-}
-
-function makeVerticalGroundHr() {
-  for (let vert = 1; vert <= 20; vert++) {
-    vertical.innerHTML += `<hr class="vertical-hr" data="vert ${vert}">`;
-  }
-}
-
-function makeSunBars() {
-  for (let bar = 1; bar <= 20; bar++) {
-    sun.innerHTML += `<hr class="sunbar-hr" data="sunbar ${bar}">`;
-  }
-}
-
-function makeSkyBars() {
-  for (let skybar = 1; skybar <= 20; skybar++) {
-    skybarDiv.innerHTML += `<hr class="skybar-hr" data="${skybar}">`;
-  }
-}
-
-function createMountains() {
-  for (m = 1; m <= 4; m++) {
-    const newRow = document.createElement("div");
-    newRow.classList.add("mountain-row");
-
-    for (mo = 1; mo <= 5; mo++) {
-      const newMountain = document.createElement("hr");
-      newMountain.classList.add("mountain");
-      newRow.appendChild(newMountain);
-    }
-
-    mountainWrapper.appendChild(newRow);
-  }
-}
-
-setInterval(() => {
-  sky.classList.add("sky-animate-thunder");
-
-  setTimeout(() => {
-    sky.classList.remove("sky-animate-thunder");
-  }, 2000);
-}, 9000);
-
 (function () {
   const second = 1000,
     minute = second * 60,
@@ -96,49 +36,54 @@ setInterval(() => {
     }, 0);
 })();
 
-
-
 //
 // ---Retro Button---
 //
-var buttons = document.querySelectorAll('.btn');
+var buttons = document.querySelectorAll(".btn");
 
-for(var i = 0; i < buttons.length; i++) {
+for (var i = 0; i < buttons.length; i++) {
   // Click
-  buttons[i].addEventListener('mousedown', function() {
-    this.classList.add('btn-active');
+  buttons[i].addEventListener("mousedown", function () {
+    this.classList.add("btn-active");
   });
-  buttons[i].addEventListener('mouseup', function() {
-    this.classList.remove('btn-active');
+  buttons[i].addEventListener("mouseup", function () {
+    this.classList.remove("btn-active");
   });
 
   // Hover
-  buttons[i].addEventListener('mouseleave', function() {
-    this.classList.remove('btn-center', 'btn-right', 'btn-left', 'btn-active');
+  buttons[i].addEventListener("mouseleave", function () {
+    this.classList.remove("btn-center", "btn-right", "btn-left", "btn-active");
   });
 
-  buttons[i].addEventListener("mousemove", function(e) {
+  buttons[i].addEventListener("mousemove", function (e) {
     var leftOffset = this.getBoundingClientRect().left;
     var btnWidth = this.offsetWidth;
     var myPosX = e.pageX;
     var newClass = "";
     // if on left 1/3 width of btn
-    if(myPosX < (leftOffset + .3 * btnWidth) ) {
-      newClass = 'btn-left'
+    if (myPosX < leftOffset + 0.3 * btnWidth) {
+      newClass = "btn-left";
     } else {
       // if on right 1/3 width of btn
-      if(myPosX > (leftOffset + .65 * btnWidth) ) {
-        newClass = 'btn-right';
+      if (myPosX > leftOffset + 0.65 * btnWidth) {
+        newClass = "btn-right";
       } else {
-        newClass = 'btn-center';
+        newClass = "btn-center";
       }
     }
     // remove prev class
-    var clearedClassList = this.className.replace(/btn-center|btn-right|btn-left/gi, "").trim();
+    var clearedClassList = this.className
+      .replace(/btn-center|btn-right|btn-left/gi, "")
+      .trim();
     this.className = clearedClassList + " " + newClass;
   });
 }
 
+let sun = document.querySelector("#retrobg-sun");
 
-
-
+// if its night
+if (new Date().getHours() < 18 || new Date().getHours() > 6) {
+  document.querySelector("#retrobg").classList.toggle("retrobg-shutdown");
+} else {
+  console.log("enjoy the day");
+}
