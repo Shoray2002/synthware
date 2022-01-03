@@ -36,13 +36,9 @@
     }, 0);
 })();
 
-//
-// ---Retro Button---
-//
 var buttons = document.querySelectorAll(".btn");
-
+var wrapper=document.querySelector(".btn-content");
 for (var i = 0; i < buttons.length; i++) {
-  // Click
   buttons[i].addEventListener("mousedown", function () {
     this.classList.add("btn-active");
   });
@@ -50,7 +46,6 @@ for (var i = 0; i < buttons.length; i++) {
     this.classList.remove("btn-active");
   });
 
-  // Hover
   buttons[i].addEventListener("mouseleave", function () {
     this.classList.remove("btn-center", "btn-right", "btn-left", "btn-active");
   });
@@ -79,11 +74,16 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
-let sun = document.querySelector("#retrobg-sun");
-
 // if its night
-if (new Date().getHours() < 18 || new Date().getHours() > 6) {
+if (new Date().getHours() > 18 || new Date().getHours() < 6) {
   document.querySelector("#retrobg").classList.toggle("retrobg-shutdown");
+  document.getElementById("logo").src = "night.svg";
 } else {
-  console.log("enjoy the day");
+  console.log("Enjoy the day");
 }
+
+
+wrapper.addEventListener("click", function () {
+ document.querySelector("#retrobg").classList.toggle("retrobg-shutdown");
+ console.log("clicked");
+});
