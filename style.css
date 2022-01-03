@@ -100,8 +100,9 @@ header p {
   line-height: 0.9;
   white-space: nowrap;
   background-image: linear-gradient(#f3f3f3 20%, cyan);
+  z-index: 5;
   width: max-content;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: cyan;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-stroke: 1px #000000;
@@ -440,7 +441,6 @@ body {
 }
 .retro-btn {
   padding-top: 2rem;
-  
 }
 .retro-btn .btn {
   -webkit-user-select: none;
