@@ -1,4 +1,3 @@
-// import * as THREE from "https://cdn.skypack.dev/three";
 console.log(POSTPROCESSING);
 class App {
   constructor(container, options = {}) {
@@ -180,7 +179,7 @@ class App {
     this.leftSticks.update(time);
     this.road.update(time);
 
-    let updateCamera = false;
+    let updateCamera = true;
     let fovChange = lerp(this.camera.fov, this.fovTarget, lerpPercentage);
     if (fovChange !== 0) {
       this.camera.fov += fovChange * delta * 6;
