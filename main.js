@@ -66,11 +66,11 @@ class Tunnel {
   }
   handleEvents() {
     window.addEventListener("resize", this.onResize.bind(this), false);
-    // document.body.addEventListener(
-    //   "mousemove",
-    //   this.onMouseMove.bind(this),
-    //   false
-    // );
+    document.body.addEventListener(
+      "mousemove",
+      this.onMouseMove.bind(this),
+      false
+    );
   }
   onResize() {
     ww = window.innerWidth;
