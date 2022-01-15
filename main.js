@@ -9,7 +9,6 @@ class Tunnel {
     window.requestAnimationFrame(this.render.bind(this));
   }
   init() {
-    this.speed = 8;
     this.mouse = {
       position: new THREE.Vector2(ww * 0.5, wh * 0.5),
       ratio: new THREE.Vector2(0, 0),
@@ -44,13 +43,15 @@ class Tunnel {
     geometry = new THREE.Geometry();
     geometry.vertices = this.curve.getPoints(70);
     this.splineMesh = new THREE.Line(geometry, new THREE.LineBasicMaterial());
-
+    // texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
     this.tubeMaterial = new THREE.MeshBasicMaterial({
       side: THREE.BackSide,
       color: 0xfb20ff,
-      map: texture
-      
+      map: texture,
+      transparent: true
     });
+
     this.tubeMaterial.map.wrapS = THREE.MirroredRepeatWrapping;
     this.tubeMaterial.map.wrapT = THREE.MirroredRepeatWrapping;
     this.tubeMaterial.map.repeat.set(
@@ -65,11 +66,11 @@ class Tunnel {
   }
   handleEvents() {
     window.addEventListener("resize", this.onResize.bind(this), false);
-    document.body.addEventListener(
-      "mousemove",
-      this.onMouseMove.bind(this),
-      false
-    );
+    // document.body.addEventListener(
+    //   "mousemove",
+    //   this.onMouseMove.bind(this),
+    //   false
+    // );
   }
   onResize() {
     ww = window.innerWidth;
@@ -210,7 +211,7 @@ class Tunnel {
 window.onload = function () {
   var loader = new THREE.TextureLoader();
   loader.crossOrigin = "Anonymous";
-  loader.load("neon1.jfif", function (texture) {
+  loader.load("purple-grid.jpg", function (texture) {
     document.body.classList.remove("loading");
     window.tunnel = new Tunnel(texture);
   });
